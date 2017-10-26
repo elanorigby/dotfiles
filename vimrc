@@ -12,10 +12,15 @@ call plug#begin('~/.vim/pluggins')
 " syntax highlighting for python
 Plug '~/.vim/pluggins/python.vim'
 
+" status bar
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
 call plug#end()
 
-
 """""""""""""""" NORMAL MODE HACKS """"""""""""""""""""""""""""""""""
+
 " enter adds blank line below cursor, does not enter insert mode
 map <Enter> o<ESC>
 " shift-enter adds blank line above cursor, does not enter insert
@@ -40,12 +45,10 @@ set encoding=utf-8  " does what it says on the tin
 
 """"""""""""""""" COLORS """""""""""""""""""""""""""""""""""""""""""""
 set background=dark
-" colo elflord
-" augroup modecolor
-"    autocmd InsertEnter * hi Normal term=reverse ctermbg=234 guibg=yellow
-"    autocmd InsertLeave * hi Normal term=NONE ctermbg=212 guibg=white
-" augroup END
-"
+set t_Co=256
+
+" airline theme
+let g:airline_theme='badwolf'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
