@@ -1,18 +1,18 @@
 # Let The Organisation Begin
 
 ### Featuring:
-Dotbot
-Vim
-- Vim Plug
-- python.vim (syntax highlighting)
+- Dotbot
+- Vim
+    - Vim Plug
+    - python.vim (syntax highlighting)
 
 
-### TODO:
+#### TODO:
 figure out how to elegantly resolve differences between my mac's bashrc and
 bash_profile and my linux machines'. 
 
 
-#### How to Set up with Dotbot
+### How to Set up with Dotbot
 
 1) create the directory in which you would like to store your dot files
 for example: mkdir ~/.dotfiles
