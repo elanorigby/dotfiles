@@ -31,3 +31,20 @@ dot files to where ever you specified (probably the home folder).
 
 6) git. commit. that shit.
 
+
+### Set up Dotbot sync with remote repo
+
+1) create the directory in which you would like to store your dot files and
+clone your remote dotfile repo into it
+git clone <url of repo> ~/.dotfiles
+
+2) run ./install from within ~/.dotfiles. This will take care of symlinking your
+dot files to where ever you specified (probably the home folder).
+
+#### Tmux
+run $ tmux source ~/.tmux.conf
+
+#### Vim
+run :PlugInstall in vim 
+
+
