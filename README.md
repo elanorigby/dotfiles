@@ -6,6 +6,7 @@
     - Vim Plug https://github.com/junegunn/vim-plug
     - python.vim (syntax highlighting) http://www.vim.org/scripts/script.php?script_id=790
     - Airline (status bar) https://github.com/vim-airline/vim-airline
+    - Tmuxline (status bar) https://vimawesome.com/plugin/tmuxline-vim
 
 
 #### TODO:
