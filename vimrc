@@ -15,6 +15,7 @@ Plug '~/.vim/pluggins/python.vim'
 " status bar
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
 
 call plug#end()
