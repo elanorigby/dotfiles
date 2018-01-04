@@ -37,15 +37,15 @@ dot files to where ever you specified (probably the home folder).
 
 1) create the directory in which you would like to store your dot files and
 clone your remote dotfile repo into it
-git clone <url of repo> ~/.dotfiles
 
-2) run ./install from within ~/.dotfiles. This will take care of symlinking your
-dot files to where ever you specified (probably the home folder).
+`git clone <url of repo> ~/.dotfiles`
+
+2) run ./install from within ~/.dotfiles. This will take care of symlinking your dot files to where ever you specified (probably the home folder).
 
 #### Tmux
-run $ tmux source ~/.tmux.conf
+run `$ tmux source ~/.tmux.conf`
 
 #### Vim
-run :PlugInstall in vim 
+run `:PlugInstall in vim`
 
 
