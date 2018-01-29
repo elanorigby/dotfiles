@@ -9,7 +9,7 @@
     - Tmuxline (status bar) https://vimawesome.com/plugin/tmuxline-vim
 - Tmux
     - Tmux Plugin Manager https://github.com/tmux-plugins/tpm
-
+    - Tmux Resurrect https://github.com/tmux-plugins/tmux-resurrect
 
 
 #### TODO:
