@@ -10,7 +10,7 @@
 - Tmux
     - Tmux Plugin Manager https://github.com/tmux-plugins/tpm
     - Tmux Resurrect https://github.com/tmux-plugins/tmux-resurrect
-
+    - Tmux Continuum https://github.com/tmux-plugins/tmux-continuum
 
 #### TODO:
 figure out how to elegantly resolve differences between my mac's bashrc and
