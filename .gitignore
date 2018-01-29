@@ -1,2 +1,3 @@
 vim/pluggins
 *.swp
+tmux/plugins/*
