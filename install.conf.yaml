@@ -10,4 +10,8 @@
         ~/.tmux.conf:
         ~/.vim:
         ~/.vimrc:
+        ~/.vimrc: ~/.config/nvim/init.vim
         ~/.gitconfig:
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
