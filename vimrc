@@ -16,7 +16,7 @@ Plug '~/.vim/pluggins/python.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -52,4 +52,8 @@ set t_Co=256
 let g:airline_theme='badwolf'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""" MISC  """""""""""""""""""""""""""""""""""""""""""""
+set noswapfile
+
+
