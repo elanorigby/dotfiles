@@ -44,12 +44,11 @@ set backspace=2
 call plug#begin('~/.vim/pluggins')
 
 " syntax highlighting for python
-
 Plug '~/.vim/pluggins/python.vim'
 
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 
