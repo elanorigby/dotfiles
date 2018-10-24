@@ -6,12 +6,11 @@
 - clean: ['~']
 
 - link:
-        ~/.tmux:
         ~/.tmux.conf:
         ~/.vim:
         ~/.vimrc:
-        ~/.vimrc: ~/.config/nvim/init.vim
         ~/.gitconfig:
+        ~/.config/nvim: nvim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
