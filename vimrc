@@ -90,12 +90,37 @@ Plug 'tmhedberg/matchit'
 Plug 'mikepjb/vim-chruby'
 
 " fuzzy search in vim
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
+" Plug 'junegunn/fzf.vim'
+
+" draw ascii boxes
+" space-d-i to start
+" space-d-s to stop
+Plug 'vim-scripts/DrawIt'
 
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""
+" Remove trailing whitespace before save
+" --------------------------------------------------
+"
+" Add filetypes to have vim auto-strip trailing whitespace, in some languages
+" (like markdown) this is undesirable.
+
+let stripEolFiletypes = [
+\ "c",
+\ "handlebars",
+\ "html",
+\ "html.handlebars",
+\ "javascript",
+\ "ruby",
+\ "rust",
+\ "yaml",
+\]
+
+execute "autocmd FileType " . join(stripEolFiletypes, ",") . " autocmd BufWritePre <buffer> :%s/\\s\\+$//e"
+
+"""""""""""""""" RANDO """""""""""""""""""""""""""""""
 
 nmap <c-p> :GFiles <CR>
 
@@ -108,13 +133,14 @@ set wildignore+=*/node_modules/*
 set wildignore+=*.swp,*~,._*
 
 set complete=.,w,b,u,t
+set noswapfile
 
 """"""""""""""""" SYNTAX STUFF """"""""""""""""""""""""""""""""
 
 " line length and indent (for python) (from hitchhiker's, adjusted to google style guide)
 " google style: 80 lines, 4 space indent, 
 syntax on           " turn on syntax highlighting
-set textwidth=80    " lines longer than 80 columns will be broken
+" set textwidth=80    " lines longer than 80 columns will be broken
 set shiftwidth=2    " operation >> indents 2 columns; << unindents 2 columns
 set tabstop=2       " a hard TAB displays as 2 columns
 set expandtab       " insert spaces when hitting TABs
@@ -133,9 +159,5 @@ set t_Co=256
 " let g:airline_theme='badwolf'
 
 
-""""""""""""""""" MISC  """""""""""""""""""""""""""""""""""""""""""""
-set noswapfile
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" THE END """""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

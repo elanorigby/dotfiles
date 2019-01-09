@@ -4,7 +4,7 @@
   st = status
 	praise = blame
   justfixit = "!f() { be rubocop -a $1; git add $1; git status }; f"
-  ck = checkout
+  co = checkout
 
 [branch]
 	autosetuprebase = always
@@ -17,7 +17,9 @@
 
 [core]
 	excludesfile = /Users/hoam/.gitignore_global
+  editor = vim
 
 [commit]
 	verbose = true
+	template = /Users/hoam/.git-commit-template
 
