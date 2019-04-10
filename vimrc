@@ -38,7 +38,7 @@ nnoremap q <Nop>
 nnoremap ; :
 
 " cnoremap :record @
-nnoremap @ <Nop>
+" nnoremap @ <nop>
 
 " copy path of file
 command CopyPath let @*=expand("%")
@@ -54,13 +54,20 @@ set clipboard=unnamed
 
 " ! bundle exec rspec %
 " run spec from in spec file
-" nnoremap ,.  ! bundle exec rspec %
+nnoremap ,. :!bundle exec rspec %<CR>
 
 """"""""""""""""" PILBO PLUGGINS """"""""""""""""""""""""""""""""""""
 " Vim Plug 
 call plug#begin('~/.vim/pluggins') "
+
+" live markdown previw!
+Plug 'skywind3000/asyncrun.vim'
+
 " syntax highlighting for python
 " Plug '~/.vim/pluggins/python.vim'
+"
+" Linting
+Plug 'w0rp/ale'
 
 Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -74,12 +81,12 @@ Plug 'tpope/vim-fugitive'
 " rails
 " Plug 'tpope/vim-rails'
 
-" surround
-" ysiw} - surround word (ysiw{ for spaces)
-" yss) - surround line
-" cs([ - replace surroundings
-" ds$ - delete surroundings
-" visual select then S[
+" surround (with {} as example surrounder)
+" ysiw} - surround word {ysiw( for spaces)
+" yss} - surround line
+" cs({ - replace surroundings (old surround, new surround)
+" ds{ - delete surroundings
+" visual select then S{
 " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
 
@@ -90,13 +97,14 @@ Plug 'tmhedberg/matchit'
 Plug 'mikepjb/vim-chruby'
 
 " fuzzy search in vim
-" Plug '/usr/local/opt/fzf'
-" Plug 'junegunn/fzf.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+nnoremap <Leader>t :FZF<CR>
 
 " draw ascii boxes
 " space-d-i to start
 " space-d-s to stop
-Plug 'vim-scripts/DrawIt'
+" Plug 'vim-scripts/DrawIt'
 
 call plug#end()
 
