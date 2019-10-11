@@ -56,16 +56,25 @@ set clipboard=unnamed
 " run spec from in spec file
 nnoremap ,. :!bundle exec rspec %<CR>
 
+" NERDTreeFind shortcut
+nmap ,m :NERDTreeFind<CR>
+
 """"""""""""""""" PILBO PLUGGINS """"""""""""""""""""""""""""""""""""
 " Vim Plug 
 call plug#begin('~/.vim/pluggins') "
 
+" go linting and stuff
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " live markdown previw!
-Plug 'skywind3000/asyncrun.vim'
+" Plug 'skywind3000/asyncrun.vim'
 
 " syntax highlighting for python
 " Plug '~/.vim/pluggins/python.vim'
-"
+
+" Terraform syntax
+Plug 'hashivim/vim-terraform'
+
 " Linting
 Plug 'w0rp/ale'
 
@@ -155,12 +164,13 @@ set expandtab       " insert spaces when hitting TABs
 set softtabstop=2   " insert/delete 2 spaces when hitting a TAB/BACKSPACE
 set shiftround      " round indent to multiple of 'shiftwidth'
 set autoindent      " align the new line indent with the previous line
-set number          " turn on line numbering 
+" set number relativenumber        " turn on line numbering 
+set number
 set encoding=utf-8  " does what it says on the tin
 
 
 """"""""""""""""" COLORS """""""""""""""""""""""""""""""""""""""""""""
-set background=dark
+set background=light
 set t_Co=256
 
 " airline theme
