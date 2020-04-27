@@ -76,7 +76,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'hashivim/vim-terraform'
 
 " Linting
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -98,6 +98,14 @@ Plug 'tpope/vim-fugitive'
 " visual select then S{
 " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
+
+" abolition, substitution, coercion
+" case insensetive search/replace - %Subvert/find/replace/g
+" snake_case (crs), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.) 
+" MixedCase (crm), camelCase (crc), space case (cr<space>), and Title Case (crt) 
+" https://github.com/tpope/vim-abolish
+" :help abolish
+Plug 'tpope/vim-abolish'
 
 " percent takes you to matching end etc.
 Plug 'tmhedberg/matchit'
