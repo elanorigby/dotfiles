@@ -10,6 +10,7 @@
         ~/.vim:
         ~/.vimrc:
         ~/.gitconfig:
+        ~/.git-completion.bash:
         ~/.config/nvim: nvim
 
 - shell:
