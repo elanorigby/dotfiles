@@ -1,7 +1,9 @@
 [alias]
-	lg = log --color --graph\n--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold\nblue)<%an>%Creset' --abbrev-commit
-    change-commits = "!f() { VAR1=$1; VAR='$'$1; OLD=$2; NEW=$3; echo \"Are you sure for replace $VAR $OLD => $NEW ?(Y/N)\";read OK;if [ \"$OK\" = 'Y' ] ; then shift 3; git filter-branch --env-filter \"if [ \\\"${VAR}\\\" = '$OLD' ]; then export $VAR1='$NEW';echo 'to $NEW'; fi\" $@; fi;}; f "
-  st = status
+  lg = log --color --graph\n--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold\nblue)<%an>%Creset' --abbrev-commit
+
+  change-commits = "!f() { VAR1=$1; VAR='$'$1; OLD=$2; NEW=$3; echo \"Are you sure for replace $VAR $OLD => $NEW ?(Y/N)\";read OK;if [ \"$OK\" = 'Y' ] ; then shift 3; git filter-branch --env-filter \"if [ \\\"${VAR}\\\" = '$OLD' ]; then export $VAR1='$NEW';echo 'to $NEW'; fi\" $@; fi;}; f "
+
+st = status
 	praise = blame
   justfixit = "!f() { be rubocop -a $1; git add $1; git status }; f"
   co = checkout
@@ -16,10 +18,13 @@
 	autosquash = true
 
 [core]
-	excludesfile = /Users/hoam/.gitignore_global
-  editor = vim
+	excludesfile = ~/.gitignore_global
+	editor = vim
 
 [commit]
 	verbose = true
-	template = /Users/hoam/.git-commit-template
+	template = ~/.git-commit-template
 
+[user]
+	name = Sharla Kew
+	email = sharla.kew@futurelearn.com

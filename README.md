@@ -12,12 +12,28 @@
     - Tmux Resurrect https://github.com/tmux-plugins/tmux-resurrect
     - Tmux Continuum https://github.com/tmux-plugins/tmux-continuum
 
-#### TODO:
-figure out how to elegantly resolve differences between my mac's bashrc and
-bash_profile and my linux machines'. 
 
 
-### How to Set up with Dotbot
+### Set it up
+1) Recommend manually creating `~/.dotfiles` and cloning into it because git will put it in a non-dot file automatically. If you care.
+
+`git clone <url of repo> ~/.dotfiles`
+
+2) run `./install` from within `~/.dotfiles`. This will take care of symlinking your
+dot files to where ever you specified (probably the home folder).
+
+
+#### Tmux
+Install tmux `brew install tmux` if you haven't installed it yet.
+run `$ tmux source ~/.tmux.conf`
+
+#### Vim
+run `:PlugInstall in vim`
+
+
+### Initial Dotbot setup
+
+in case I ever have to start from scratch again
 
 1) create the directory in which you would like to store your dot files
 for example: `mkdir ~/.dotfiles`
@@ -35,23 +51,3 @@ the Dotbot readme
 dot files to where ever you specified (probably the home folder).
 
 6) git. commit. that shit.
-
-
-### Set up Dotbot sync with remote repo
-
-1) create the directory in which you would like to store your dot files and
-clone your remote dotfile repo into it
-
-`git clone <url of repo> ~/.dotfiles`
-
-5) run `./install` from within `~/.dotfiles`. This will take care of symlinking your
-dot files to where ever you specified (probably the home folder).
-
-
-#### Tmux
-run `$ tmux source ~/.tmux.conf`
-
-#### Vim
-run `:PlugInstall in vim`
-
-
