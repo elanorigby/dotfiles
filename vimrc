@@ -53,7 +53,7 @@ set backspace=2
 set clipboard=unnamed
 
 " ! bundle exec rspec %
-" run spec from in spec file
+" ., to run spec from in spec file
 nnoremap ,. :!bundle exec rspec %<CR>
 
 " NERDTreeFind shortcut
@@ -114,6 +114,7 @@ Plug 'tmhedberg/matchit'
 Plug 'mikepjb/vim-chruby'
 
 " fuzzy search in vim
+" also needs `brew install fzf`
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 nnoremap <Leader>t :FZF<CR>
