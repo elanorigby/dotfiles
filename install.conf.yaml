@@ -12,6 +12,8 @@
         ~/.gitconfig:
         ~/.git-completion.bash:
         ~/.config/nvim: nvim
+        ~/.ideavimrc:
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
