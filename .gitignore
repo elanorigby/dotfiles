@@ -1,3 +1,4 @@
 vim/pluggins/*
 *.swp
 tmux/*
+bash/workrc
