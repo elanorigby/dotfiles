@@ -4,9 +4,7 @@
 " -------- \ V / | || |\/| |   / (__  --------------     "
 "  -------- \_/ |___|_|  |_|_|_\\___| -----------------  " 
 "                                                        "
-"""""""""""""""" Nvim tweaks  """"""""""""""""""""""""""""""""""
-
-:set noshowcmd noruler
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""" Nerdtree stuff  """"""""""""""""""""""""""""""""""
 
@@ -23,7 +21,7 @@ map <Enter> o<ESC>
 " shift-enter adds blank line above cursor, does not enter insert
 map <S-Enter> O<esc>
 
-imap jk <ESC>
+imap hh <ESC>
 
 " deal with annoyance of accidental macros
 " Q records macro now
@@ -57,7 +55,21 @@ set clipboard=unnamed
 nnoremap ,. :!bundle exec rspec %<CR>
 
 " NERDTreeFind shortcut
-nmap ,m :NERDTreeFind<CR>
+nmap ,; :NERDTreeFind<CR>
+
+nmap <c-p> :GFiles <CR>
+
+set wildmenu wildmode=longest:full
+set wildignorecase
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem          
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz                      
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/* 
+set wildignore+=*/node_modules/*
+set wildignore+=*.swp,*~,._*
+
+set complete=.,w,b,u,t
+set noswapfile
+
 
 """"""""""""""""" PILBO PLUGGINS """"""""""""""""""""""""""""""""""""
 " Vim Plug 
@@ -146,20 +158,82 @@ let stripEolFiletypes = [
 
 execute "autocmd FileType " . join(stripEolFiletypes, ",") . " autocmd BufWritePre <buffer> :%s/\\s\\+$//e"
 
-"""""""""""""""" RANDO """""""""""""""""""""""""""""""
+"""""""""""""""" COMMANDS """""""""""""""""""""""""""""""
 
-nmap <c-p> :GFiles <CR>
+" jump to last known position in a file after opening it
+autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
 
-set wildmenu wildmode=longest:full
-set wildignorecase
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem          
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz                      
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/* 
-set wildignore+=*/node_modules/*
-set wildignore+=*.swp,*~,._*
+" Don't syntax highlight markdown because it's often wrong
+autocmd! FileType mkd setlocal syn=off    
 
-set complete=.,w,b,u,t
-set noswapfile
+" *.md is markdown
+autocmd! BufNewFile,BufRead *.md setlocal ft=
+        
+" Compute syntax highlighting from beginning of file. (By default, vim only
+" looks 200 lines back, which can make it highlight code incorrectly in some
+" long files.)
+autocmd BufEnter * :syntax sync fromstart
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col
+        return "\<tab>"
+    endif
+
+    let char = getline('.')[col - 1]
+    if char =~ '\k'
+        " There's an identifier before the cursor, so complete the identifier.
+        return "\<c-p>"
+    else
+        return "\<tab>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+" map <leader>n :call RenameFile()<cr> (conflicts with nerdtree)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" InsertTime COMMAND
+" Insert the current time
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RemoveFancyCharacters COMMAND
+" Remove smart quotes, etc.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RemoveFancyCharacters()
+    let typo = {}
+    let typo["“"] = '"'
+    let typo["”"] = '"'
+    let typo["‘"] = "'"
+    let typo["’"] = "'"
+    let typo["–"] = '--'
+    let typo["—"] = '---'
+    let typo["…"] = '...'
+    :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
+endfunction
+command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
 """"""""""""""""" SYNTAX STUFF """"""""""""""""""""""""""""""""
 
