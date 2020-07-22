@@ -2,3 +2,4 @@ vim/pluggins/*
 *.swp
 tmux/*
 bash/workrc
+vim/work.vim
