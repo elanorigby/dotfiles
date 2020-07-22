@@ -39,7 +39,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/projects/terraform/bin
-
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
 # export GOPATH="$HOME/go"
 
 # pyenv setup
