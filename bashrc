@@ -27,12 +27,16 @@ alias notes='cd ~/notes/ && vim .'
 alias newnote='cd ~/notes/ && vim new_$now.md'
 alias la='ls -a'
 alias ll='ls -al'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glat="git log --stat"
-alias grim='git fetch && git rebase -i origin/master'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias current='git rev-parse --abbrev-ref HEAD'
+# --- git aliases
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glat="git log --stat"
+alias grim='git fetch && git rebase -i origin/master'
+alias gwoops='git commit --amend --no-edit'
+alias gwoosh='git add . && git commit --amend --no-edit && git push -f'
+
 
 # ----- PATH JAZZ
 export PATH=$PATH:$(go env GOPATH)/bin
