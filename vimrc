@@ -139,6 +139,10 @@ nnoremap <Leader>t :FZF<CR>
 " space-d-s to stop
 " Plug 'vim-scripts/DrawIt'
 
+" Vim HardTime
+Plug 'takac/vim-hardtime'
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -250,7 +254,7 @@ set expandtab       " insert spaces when hitting TABs
 set softtabstop=2   " insert/delete 2 spaces when hitting a TAB/BACKSPACE
 set shiftround      " round indent to multiple of 'shiftwidth'
 set autoindent      " align the new line indent with the previous line
-" set number relativenumber        " turn on line numbering 
+set number relativenumber        " turn on line numbering 
 set number
 set encoding=utf-8  " does what it says on the tin
 
