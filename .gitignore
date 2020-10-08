@@ -3,3 +3,5 @@ vim/pluggins/*
 tmux/*
 bash/workrc
 vim/work.vim
+vim/swap
+vim/.netrwhist
