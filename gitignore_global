@@ -1,0 +1,6 @@
+vim/pluggins/*
+*.swp
+*.un~
+tmux/*
+bash/workrc
+vim/work.vim
