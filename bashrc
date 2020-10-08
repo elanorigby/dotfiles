@@ -20,7 +20,15 @@ if [ -f ~/.dotfiles/bash/prompt ]; then
     source ~/.dotfiles/bash/prompt
 fi
 
+# Vim mode in the command line
+# set -o vi
+
 now=$(date +"%m_%d_%Y")
+
+# Better auto complete
+# more like worse lol
+# bind 'set show-all-if-ambiguous on'
+# bind 'TAB:menu-complete'
 
 # ----- ALIASES
 alias notes='cd ~/notes/ && vim .'
@@ -31,15 +39,14 @@ alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias current='git rev-parse --abbrev-ref HEAD'
 # --- git aliases
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glat="git log --stat"
+alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grim='git fetch && git rebase -i origin/master'
 alias gwoops='git commit --amend --no-edit'
-alias gwoosh='git add . && git commit --amend --no-edit && git push -f'
-
+alias gwoosh='git commit --amend --no-edit && git push -f'
+alias gsmash='git add . && git commit --amend --no-edit && git push -f'
 
 # ----- PATH JAZZ
-export PATH=$PATH:$(go env GOPATH)/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/projects/terraform/bin
