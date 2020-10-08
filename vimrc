@@ -73,6 +73,39 @@ set wildignore+=*.swp,*~,._*
 set complete=.,w,b,u,t
 set noswapfile
 
+"set hlsearch 
+" map :clhl "let @/ = ""
+
+" stop u from downcasing shit willy nilly
+xnoremap U <nop>
+nnoremap gu <nop>
+nnoremap gU <nop>
+
+"""""""""""""""""" SWAPFILE BACKUP SETTINGS """"""""""""""""""""""""
+" from https://begriffs.com/posts/2019-07-19-history-use-vim.html#backups-and-undo
+
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime
+" (4 seconds) are fine
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+	" consolidate the writebackups -- not a big
+	" deal either way, since they usually get deleted
+	set backupdir^=~/.vim/backup//
+end
+
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
 
 """"""""""""""""" PILBO PLUGGINS """"""""""""""""""""""""""""""""""""
 " Vim Plug 
@@ -140,9 +173,14 @@ nnoremap <Leader>t :FZF<CR>
 " Plug 'vim-scripts/DrawIt'
 
 " Vim HardTime
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 let g:hardtime_default_on = 1
 let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
+let g:hardtime_maxcount = 2
+
+" Smooth scrolling
+" https://awesomeopensource.com/project/psliwka/vim-smoothie
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -254,7 +292,7 @@ set expandtab       " insert spaces when hitting TABs
 set softtabstop=2   " insert/delete 2 spaces when hitting a TAB/BACKSPACE
 set shiftround      " round indent to multiple of 'shiftwidth'
 set autoindent      " align the new line indent with the previous line
-set number relativenumber        " turn on line numbering 
+" set number relativenumber        " turn on line numbering 
 set number
 set encoding=utf-8  " does what it says on the tin
 
