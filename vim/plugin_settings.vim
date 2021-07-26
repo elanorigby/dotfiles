@@ -43,6 +43,7 @@ Plug 'tpope/vim-abolish'
 " also needs `brew install fzf`
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+nmap <c-p> :GFiles <CR>
 
 "" Extras
 "

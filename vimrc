@@ -12,13 +12,12 @@
 " I think I have overwritten that to be `~/.vim/pluggins/
 source ~/.vim/work.vim
 source ~/.vim/swapfile_backup_settings.vim
+" :PlugInstall and :PlugUpdate from 
 source ~/.vim/plugin_settings.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"## What is this
+"## Wild stuff is command completion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <c-p> :GFiles <CR>
-
 set wildmenu wildmode=longest:full
 set wildignorecase
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem          
@@ -33,32 +32,29 @@ set complete=.,w,b,u,t
 "## ACTIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ! bundle exec rspec %
-" .r to run spec from in spec file
+" ,r to run spec from in spec file
 nnoremap ,r :!bundle exec rspec %<CR>
 
 " copy path of file
-command CopyPath let @*=expand("%")
+command Cp let @*=expand("%")
 
+" leader is space
 let mapleader = " "
 map <Leader>n :NERDTreeToggle<CR>
 
 " NERDTreeFind shortcut
 " ,; opens Nerdtree to current file
-"
+
 nmap ,; :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
 
 map <Leader>f :FZF<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"###  Insert the current time
-
+" Insert the current time
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"### Remove smart quotes, etc.
-
+" Remove smart quotes, etc.
 function! RemoveFancyCharacters()
     let typo = {}
     let typo["“"] = '"'
@@ -72,10 +68,9 @@ function! RemoveFancyCharacters()
 endfunction
 command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"###  MULTIPURPOSE TAB KEY
+" MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
-"
+
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col
@@ -96,7 +91,6 @@ inoremap <s-tab> <c-n>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "## PASSIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " enter adds blank line below cursor, does not enter insert mode
 map <Enter> o<ESC>
