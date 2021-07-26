@@ -41,9 +41,8 @@ alias current='git rev-parse --abbrev-ref HEAD'
 # --- git aliases
 alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grim='git fetch && git rebase -i origin/master'
-alias gwoops='git commit --amend --no-edit'
-alias gwoosh='git commit --amend --no-edit && git push -f'
-alias gsmash='git add . && git commit --amend --no-edit && git push -f'
+alias grimain='git fetch && git rebase -i origin/main'
+alias gitl='git log --oneline -5'
 
 # ----- PATH JAZZ
 # export PATH=$PATH:$(go env GOPATH)/bin
@@ -51,6 +50,7 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/projects/terraform/bin
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
+export PATH=$PATH:$HOME/bin
 # export GOPATH="$HOME/go"
 
 # pyenv setup
@@ -79,13 +79,23 @@ eval "$(pyenv virtualenv-init -)"
 # ---- Work around MacOSX high sierra security shit for multithreading
 #https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-chruby 2.6.2
 
 # NVM setup
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Yarn setup
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+_direnv_hook() {
+  local previous_exit_status=$?;
+  trap -- '' SIGINT;
+  eval "$("/usr/local/bin/direnv" export bash)";
+  trap - SIGINT;
+  return $previous_exit_status;
+};
+if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+fi
