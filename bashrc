@@ -37,8 +37,10 @@ alias la='ls -a'
 alias ll='ls -al'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
-alias current='git rev-parse --abbrev-ref HEAD'
+alias fy='fzf | yank'
+
 # --- git aliases
+alias current='git rev-parse --abbrev-ref HEAD'
 alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grim='git fetch && git rebase -i origin/master'
 alias grimain='git fetch && git rebase -i origin/main'
