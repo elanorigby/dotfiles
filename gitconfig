@@ -14,9 +14,6 @@
 [branch]
 	autosetuprebase = always
 
-[push]
-	default = simple
-
 [rebase]
 	autosquash = true
 
@@ -31,3 +28,11 @@
 [user]
 	name = Sharla Kew
 	email = sharla.kew@futurelearn.com
+
+[init]
+	defaultBranch = main
+
+[merge]
+      conflictstyle = diff3
+[grep]
+	lineNumber = true

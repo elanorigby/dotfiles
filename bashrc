@@ -1,12 +1,14 @@
 # ----- SOURCE STUFF
 
-if [ -f /usr/local/share/chruby/chruby.sh ]; then
+# if [ -f /usr/local/share/chruby/chruby.sh ]; then
 source /usr/local/share/chruby/chruby.sh
-fi
+# fi
 
-if [ -f /usr/local/share/chruby/auto.sh ]; then
+# if [ -f /usr/local/share/chruby/auto.sh ]; then
 source /usr/local/share/chruby/auto.sh
-fi
+# fi
+
+# for auto switching: source /usr/local/opt/chruby/share/chruby/auto.sh
 
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
@@ -31,19 +33,28 @@ now=$(date +"%m_%d_%Y")
 # bind 'TAB:menu-complete'
 
 # ----- ALIASES
+# notes
+alias diary='cd ~/notes/diary && vim $now_diary.md'
 alias notes='cd ~/notes/ && vim .'
 alias newnote='cd ~/notes/ && vim new_$now.md'
+alias sqlnotes='cd ~/notes/ && vim sql/sql_notes.md'
+alias gitnotes='cd ~/notes/ && vim git/git_notes.md'
+alias vimnotes='cd ~/notes/ && vim vim/vim_notes.md'
+# general
 alias la='ls -a'
 alias ll='ls -al'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
+alias tmxcnf='vim ~/.tmux.conf'
+# copy fzf choice to clipboard
 alias fy='fzf | yank'
+alias prn='poetry run'
 
 # --- git aliases
 alias current='git rev-parse --abbrev-ref HEAD'
 alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias grim='git fetch && git rebase -i origin/master'
-alias grimain='git fetch && git rebase -i origin/main'
+alias grim='git fetch && git rebase -i origin/main'
+alias grimstr='git fetch && git rebase -i origin/master'
 alias gitl='git log --oneline -5'
 
 # ----- PATH JAZZ
@@ -57,6 +68,7 @@ export PATH=$PATH:$HOME/bin
 
 # pyenv setup
 export PATH="/Users/bigmac/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -101,3 +113,7 @@ _direnv_hook() {
 if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
   PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 fi
+. "$HOME/.cargo/env"
+
+# Created by `pipx` on 2021-12-29 16:25:25
+export PATH="$PATH:/Users/bigmac/.local/bin"

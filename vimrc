@@ -36,7 +36,7 @@ set complete=.,w,b,u,t
 nnoremap ,r :!bundle exec rspec %<CR>
 
 " copy path of file
-command Cp let @*=expand("%")
+command Cp let @*=expand("%:p")
 
 " leader is space
 let mapleader = " "
@@ -50,6 +50,7 @@ nmap ,; :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
 map <Leader>f :FZF<CR>
+map <Leader>t :Tags<CR>
 
 " Insert the current time
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
@@ -88,21 +89,38 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
+" Better split navigation
+" https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations
+" ctrl-direction instead of ctrl-w ctrl-direction
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Open new splits to right and bottom
+set splitbelow
+set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "## PASSIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" show trailing whitespace
+set list listchars=tab:\ \ ,trail:Â°
+
+" show indent characters (yaml stuff)
+set list listchars=tab:»-,trail:·,extends:»,precedes:«
 
 " enter adds blank line below cursor, does not enter insert mode
 map <Enter> o<ESC>
 " shift-enter adds blank line above cursor, does not enter insert
 map <S-Enter> O<esc>
 
-" hh 
+" hh
 imap hh <ESC>
 
 " deal with annoyance of accidental macros
-" Q records macro now
-nnoremap Q q
+" leader-q records macro now
+nnoremap <leader>q q
 " just q does nothing
 nnoremap q <Nop>
 
@@ -118,20 +136,24 @@ set shell=bash\ -l
 " make delete act normal
 set backspace=2
 
+" make delete work as delete in normal mode
+nnoremap <BS> X
+
 " use system clipboard
 set clipboard=unnamed
 
 " make P paste the last explicitly copied thing
 " don't think this is working
-nnoremap P "0p
+" nnoremap P "0p
 
 " stop u from downcasing shit willy nilly
 xnoremap U <nop>
 nnoremap gu <nop>
 nnoremap gU <nop>
 
-" use shift-tab to insert unexpanded tab (hopefully works)
+" use shift-tab to insert unexpanded tab (hopefully works)(seems like it does)
 inoremap <S-Tab> <C-V><Tab>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "### Remove trailing whitespace before save
@@ -148,6 +170,8 @@ let stripEolFiletypes = [
 \ "ruby",
 \ "rust",
 \ "yaml",
+\ "yml",
+\ "sql",
 \]
 
 execute "autocmd FileType " . join(stripEolFiletypes, ",") . " autocmd BufWritePre <buffer> :%s/\\s\\+$//e"
@@ -182,11 +206,11 @@ set shiftwidth=2    " operation >> indents 2 columns; << unindents 2 columns
 set tabstop=2       " a hard TAB displays as 2 columns
 set expandtab       " insert spaces when hitting TABs
 set softtabstop=2   " insert/delete 2 spaces when hitting a TAB/BACKSPACE
-set shiftround      " round indent to multiple of 'shiftwidth'
 set autoindent      " align the new line indent with the previous line
 set number
 set encoding=utf-8  " does what it says on the tin
 
+" can run :retab to turn tabs into spaces with the above settings
 
 "### COLORS 
 set background=light
