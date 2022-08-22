@@ -43,9 +43,10 @@ let mapleader = " "
 map <Leader>n :NERDTreeToggle<CR>
 
 " NERDTreeFind shortcut
-" ,; opens Nerdtree to current file
+" ,; opens Nerdtree to current file (ergodox)
+" changed to ,' for kinesis
 
-nmap ,; :NERDTreeFind<CR>
+nmap ,' :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
 

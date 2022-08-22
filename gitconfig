@@ -10,6 +10,7 @@
   fleece = push --force-with-lease
   canoe = commit --amend --no-edit
   pushnb = !git branch --show-current | xargs git push -u origin
+  cm = commit -m
 
 [branch]
 	autosetuprebase = always
@@ -36,3 +37,5 @@
       conflictstyle = diff3
 [grep]
 	lineNumber = true
+[push]
+	autoSetupRemote = true

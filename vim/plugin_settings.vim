@@ -43,10 +43,35 @@ Plug 'tpope/vim-abolish'
 " also needs `brew install fzf`
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-nmap <c-p> :GFiles <CR>
 
 "" Extras
-"
+
+" c-x: Use search string as filename and open in vertical split.
+" c-v: Open in vertical split
+" c-s: Open in horizontal split
+" c-t: Open in new tab
+" c-y: Yank the selected filenames
+" <Enter>: Open highlighted search result in current buffer
+" https://github.com/alok/notational-fzf-vim
+Plug 'alok/notational-fzf-vim'
+" let g:nv_search_paths = ['~/notes', '~/.dotfiles/vimrc', '~/.dotfiles/vim/plugin_settings.vim', '~/.dotfiles/bashrc', '~/.dotfiles/tmux.conf']
+let g:nv_search_paths = ['~/notes']
+nmap <silent> <c-s> :NV<CR>
+
+"    <ctrl-p> => Left
+"    <ctrl-j> => Down
+"    <ctrl-k> => Up
+"    <ctrl-n> => Right
+"    <ctrl-\> => Previous split
+" good nav for tmux and vim
+" https://github.com/christoomey/vim-tmux-navigator
+Plug 'christoomey/vim-tmux-navigator'
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-n> :TmuxNavigateRight<cr>.
+nnoremap <silent> <c-p> :TmuxNavigateLeft<cr>.
+
 " percent takes you to matching end etc.
 Plug 'tmhedberg/matchit'
 

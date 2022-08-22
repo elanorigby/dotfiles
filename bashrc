@@ -25,6 +25,11 @@ fi
 # Vim mode in the command line
 # set -o vi
 
+# fzf plugin ignore stuff in gitignore using
+if command -v rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+fi
+
 now=$(date +"%m_%d_%Y")
 
 # Better auto complete
@@ -56,6 +61,7 @@ alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 alias grim='git fetch && git rebase -i origin/main'
 alias grimstr='git fetch && git rebase -i origin/master'
 alias gitl='git log --oneline -5'
+alias g='git'
 
 # ----- PATH JAZZ
 # export PATH=$PATH:$(go env GOPATH)/bin
