@@ -43,10 +43,11 @@ let mapleader = " "
 map <Leader>n :NERDTreeToggle<CR>
 
 " NERDTreeFind shortcut
-" ,; opens Nerdtree to current file (ergodox)
-" changed to ,' for kinesis
-
-nmap ,' :NERDTreeFind<CR>
+" opens Nerdtree to current file (ergodox)
+" kinesis
+" nmap' :NERDTreeFind<CR>
+" ergodox
+nmap ,. :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
 
@@ -218,6 +219,15 @@ set background=light
 set t_Co=256
 "set highlight clear SpellBad
 " set highlight SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#ffff00
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"# MACROS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" made for copying loadfile docs to dbt
+let @d='0ct''description: hh'
+let @n='0f:lyt,O- name: hhp'
+let @b='i---version: 2models:- name: hh"%pa€kb€kb€kb€kbhhocolumns:hh:w'
 
 """""""""""""""""" THE END """""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

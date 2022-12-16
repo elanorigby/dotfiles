@@ -22,6 +22,9 @@ if [ -f ~/.dotfiles/bash/prompt ]; then
     source ~/.dotfiles/bash/prompt
 fi
 
+#pipx autocomplete
+#eval "$(register-python-argcomplete pipx)"
+
 # Vim mode in the command line
 # set -o vi
 
@@ -49,6 +52,7 @@ alias vimnotes='cd ~/notes/ && vim vim/vim_notes.md'
 alias la='ls -a'
 alias ll='ls -al'
 alias vimrc='vim ~/.vimrc'
+alias pluggins='vim /Users/bigmac/.dotfiles/vim/plugin_settings.vim'
 alias bashrc='vim ~/.bashrc'
 alias tmxcnf='vim ~/.tmux.conf'
 # copy fzf choice to clipboard
@@ -73,10 +77,11 @@ export PATH=$PATH:$HOME/bin
 # export GOPATH="$HOME/go"
 
 # pyenv setup
-export PATH="/Users/bigmac/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
+# Created by `pipx` on 2021-12-29 16:25:25
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:/Users/bigmac/.local/bin"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # ----- BEHAVIOR MODS
 
@@ -121,5 +126,3 @@ if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
 fi
 . "$HOME/.cargo/env"
 
-# Created by `pipx` on 2021-12-29 16:25:25
-export PATH="$PATH:/Users/bigmac/.local/bin"

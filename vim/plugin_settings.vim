@@ -46,6 +46,7 @@ Plug 'junegunn/fzf.vim'
 
 "" Extras
 
+" Easy notes search
 " c-x: Use search string as filename and open in vertical split.
 " c-v: Open in vertical split
 " c-s: Open in horizontal split
@@ -54,10 +55,11 @@ Plug 'junegunn/fzf.vim'
 " <Enter>: Open highlighted search result in current buffer
 " https://github.com/alok/notational-fzf-vim
 Plug 'alok/notational-fzf-vim'
-" let g:nv_search_paths = ['~/notes', '~/.dotfiles/vimrc', '~/.dotfiles/vim/plugin_settings.vim', '~/.dotfiles/bashrc', '~/.dotfiles/tmux.conf']
-let g:nv_search_paths = ['~/notes']
+" let g:nv_search_paths = ['~/notes', '~/.dotfiles/vimrc', '~/.dotfiles/vim/plugin_settings.vim', '~/.dotfiles/bashrc', '~/.dotfiles/tmux.conf']:
+let g:nv_search_paths = ['~/notes', '~/projects/engineering-docs/the-data-warehouse/', '~/.dotfiles/vim/plugin_settings.vim']
 nmap <silent> <c-s> :NV<CR>
 
+" Smooth nav attempt
 "    <ctrl-p> => Left
 "    <ctrl-j> => Down
 "    <ctrl-k> => Up
@@ -98,5 +100,11 @@ Plug 'reedes/vim-pencil'
 
 "https://github.com/reedes/vim-colors-pencil
 Plug 'reedes/vim-colors-pencil'
+
+"# New plugins, value un-assesed
+"
+"shows the context of the currently visible buffer contents
+"https://github.com/wellle/context.vim
+Plug 'wellle/context.vim'
 
 call plug#end()
