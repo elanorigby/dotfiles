@@ -42,7 +42,7 @@ Plug 'tpope/vim-abolish'
 " fuzzy search in vim
 " also needs `brew install fzf`
 " Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 "" EXTRAS
 

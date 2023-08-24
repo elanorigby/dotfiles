@@ -116,3 +116,5 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 #  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 #fi
 #. "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
