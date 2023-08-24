@@ -41,10 +41,10 @@ Plug 'tpope/vim-abolish'
 
 " fuzzy search in vim
 " also needs `brew install fzf`
-Plug '/usr/local/opt/fzf'
+" Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-"" Extras
+"" EXTRAS
 
 " ----- Easy notes search ----- 
 " c-x: Use search string as filename and open in vertical split.
@@ -78,9 +78,6 @@ noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
 
 " percent takes you to matching end etc.
 Plug 'tmhedberg/matchit'
-
-" make chruby work with vim
-Plug 'mikepjb/vim-chruby'
 
 " Terraform syntax
 Plug 'hashivim/vim-terraform'

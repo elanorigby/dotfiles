@@ -1,15 +1,5 @@
 # ----- SOURCE STUFF
 
-# if [ -f /usr/local/share/chruby/chruby.sh ]; then
-source /usr/local/share/chruby/chruby.sh
-# fi
-
-# if [ -f /usr/local/share/chruby/auto.sh ]; then
-source /usr/local/share/chruby/auto.sh
-# fi
-
-# for auto switching: source /usr/local/opt/chruby/share/chruby/auto.sh
-
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
 fi
@@ -71,8 +61,9 @@ alias g='git'
 # export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$HOME/.dotfiles/bin:$PATH
 # export PATH=$PATH:$HOME/.cargo/env
-export PATH=$PATH:$HOME/projects/terraform/bin
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
+# export PATH=$PATH:$HOME/projects/terraform/bin
+# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
+export PATH=$PATH:/usr/local/bin/vim
 export PATH=$PATH:$HOME/bin
 export PATH="$HOME/.local/bin:$PATH"
 # export GOPATH="$HOME/go"
@@ -80,7 +71,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # pyenv setup
 # Created by `pipx` on 2021-12-29 16:25:25
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:/Users/bigmac/.local/bin"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
@@ -126,4 +116,3 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 #  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 #fi
 #. "$HOME/.cargo/env"
-

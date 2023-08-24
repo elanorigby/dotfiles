@@ -18,3 +18,5 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Created by `pipx` on 2021-12-29 16:25:25
 export PATH="$PATH:/Users/bigmac/.local/bin"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

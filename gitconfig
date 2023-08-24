@@ -27,8 +27,8 @@
 # 	template = ~/.git-commit-template
 
 [user]
-	name = Sharlak
-	email = email@.email.email
+	name = Sharla Kew
+	email = sharla@seatfrog.com
 
 [init]
 	defaultBranch = main
