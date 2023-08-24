@@ -46,7 +46,7 @@ Plug 'junegunn/fzf.vim'
 
 "" Extras
 
-" Easy notes search
+" ----- Easy notes search ----- 
 " c-x: Use search string as filename and open in vertical split.
 " c-v: Open in vertical split
 " c-s: Open in horizontal split
@@ -55,11 +55,10 @@ Plug 'junegunn/fzf.vim'
 " <Enter>: Open highlighted search result in current buffer
 " https://github.com/alok/notational-fzf-vim
 Plug 'alok/notational-fzf-vim'
-" let g:nv_search_paths = ['~/notes', '~/.dotfiles/vimrc', '~/.dotfiles/vim/plugin_settings.vim', '~/.dotfiles/bashrc', '~/.dotfiles/tmux.conf']:
-let g:nv_search_paths = ['~/notes', '~/projects/engineering-docs/the-data-warehouse/', '~/.dotfiles/vim/plugin_settings.vim']
+let g:nv_search_paths = ['~/projects/notes', '~/.dotfiles/vim/plugin_settings.vim']
 nmap <silent> <c-s> :NV<CR>
 
-" Smooth nav attempt
+" ----- Smooth nav attempt -----
 "    <ctrl-p> => Left
 "    <ctrl-j> => Down
 "    <ctrl-k> => Up
@@ -71,8 +70,11 @@ Plug 'christoomey/vim-tmux-navigator'
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-n> :TmuxNavigateRight<cr>.
-nnoremap <silent> <c-p> :TmuxNavigateLeft<cr>.
+noremap <silent> <c-p> :<C-U>TmuxNavigateLeft<cr>
+noremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
+noremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
+noremap <silent> <c-n> :<C-U>TmuxNavigateRight<cr>
+noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
 
 " percent takes you to matching end etc.
 Plug 'tmhedberg/matchit'
@@ -83,10 +85,13 @@ Plug 'mikepjb/vim-chruby'
 " Terraform syntax
 Plug 'hashivim/vim-terraform'
 
-"# MARKDOWN
-"
+" MARKDOWN
+
+Plug 'tpope/vim-markdown'
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'py=python', 'sql=sql']
+
 " Nicer markdown files / writing experience
-" https://github.com/reedes/vim-pencil
+" ttps://github.com/reedes/vim-pencil
 set nocompatible
 filetype plugin on       " may already be in your .vimrc
 
@@ -106,5 +111,33 @@ Plug 'reedes/vim-colors-pencil'
 "shows the context of the currently visible buffer contents
 "https://github.com/wellle/context.vim
 Plug 'wellle/context.vim'
+
+" DATABASES databases
+" 
+" UI for interacting with dbs
+" https://github.com/kristijanhusak/vim-dadbod-ui
+" open vim and run :DBUI
+" press A from drawer to add a new db connection
+"  example: postgres://pancakes@localhost:5432/pagila
+" press d from drawer to remove selected connection
+" highlight only the query to run vith visual mode (ctrl or shift v) and then
+"  press <leader> S (uppercase) to run only that query
+" <Leader>W - Permanently save query for later use
+Plug 'kristijanhusak/vim-packager' " do I need this
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
+
+" colorize csvs
+" https://github.com/mechatroner/rainbow_csv/
+Plug 'mechatroner/rainbow_csv'
+
+
+
+" Comment out a line based on file type
+" to trigger :AutoInlineComment in both modes, press Ctrl + /
+" to trigger :AutoBlockComment in both modes, press Ctrl + Shift + A
+Plug 'KarimElghamry/vim-auto-comment'
+
 
 call plug#end()

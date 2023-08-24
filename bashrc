@@ -42,17 +42,17 @@ now=$(date +"%m_%d_%Y")
 
 # ----- ALIASES
 # notes
-alias diary='cd ~/notes/diary && vim $now_diary.md'
-alias notes='cd ~/notes/ && vim .'
-alias newnote='cd ~/notes/ && vim new_$now.md'
-alias sqlnotes='cd ~/notes/ && vim sql/sql_notes.md'
-alias gitnotes='cd ~/notes/ && vim git/git_notes.md'
-alias vimnotes='cd ~/notes/ && vim vim/vim_notes.md'
+alias diary='cd ~/projects/notes/diary && vim $now_diary.md'
+alias notes='cd ~/projects/notes/ && vim .'
+alias newnote='cd ~/projects/notes/ && vim new_$now.md'
+alias sqlnotes='cd ~/projects/notes/ && vim sql/sql_notes.md'
+alias gitnotes='cd ~/projects/notes/ && vim git/git_notes.md'
+alias vimnotes='cd ~/projects/notes/ && vim vim/vim_notes.md'
 # general
 alias la='ls -a'
 alias ll='ls -al'
 alias vimrc='vim ~/.vimrc'
-alias pluggins='vim /Users/bigmac/.dotfiles/vim/plugin_settings.vim'
+alias pluggins='vim ~/.dotfiles/vim/plugin_settings.vim'
 alias bashrc='vim ~/.bashrc'
 alias tmxcnf='vim ~/.tmux.conf'
 # copy fzf choice to clipboard
@@ -70,10 +70,11 @@ alias g='git'
 # ----- PATH JAZZ
 # export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$HOME/.dotfiles/bin:$PATH
-export PATH=$PATH:$HOME/.cargo/env
+# export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/projects/terraform/bin
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
 export PATH=$PATH:$HOME/bin
+export PATH="$HOME/.local/bin:$PATH"
 # export GOPATH="$HOME/go"
 
 # pyenv setup
@@ -114,15 +115,15 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Yarn setup
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-_direnv_hook() {
-  local previous_exit_status=$?;
-  trap -- '' SIGINT;
-  eval "$("/usr/local/bin/direnv" export bash)";
-  trap - SIGINT;
-  return $previous_exit_status;
-};
-if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
-  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
-fi
-. "$HOME/.cargo/env"
+#_direnv_hook() {
+#  local previous_exit_status=$?;
+#  trap -- '' SIGINT;
+#  eval "$("/usr/local/bin/direnv" export bash)";
+#  trap - SIGINT;
+#  return $previous_exit_status;
+#};
+#if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+#  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+#fi
+#. "$HOME/.cargo/env"
 

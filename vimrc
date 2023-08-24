@@ -28,6 +28,9 @@ set wildignore+=*.swp,*~,._*
 
 set complete=.,w,b,u,t
 
+" if search all lowercase, ignores case. otherwise, matches case
+set smartcase
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "## ACTIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -121,7 +124,7 @@ map <S-Enter> O<esc>
 imap hh <ESC>
 
 " deal with annoyance of accidental macros
-" leader-q records macro now
+" leader-q records and quits macro now
 nnoremap <leader>q q
 " just q does nothing
 nnoremap q <Nop>
@@ -188,11 +191,14 @@ autocmd BufReadPost *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "### Markdown
 " Don't syntax highlight markdown because it's often wrong
-" autocmd! FileType mkd setlocal syn=off    
+" autocmd! FileType mkd setlocal syn=off
 
 " *.md is markdown
 autocmd! BufNewFile,BufRead *.md setlocal ft=
-        
+
+" highlight code in backticks ``` in markdown files, not working?
+let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'py=python', 'sql=sql']
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "### Compute syntax highlighting from beginning of file. 
 " (By default, vim only looks 200 lines back, 

@@ -24,11 +24,11 @@
 
 [commit]
 	verbose = true
-	template = ~/.git-commit-template
+# 	template = ~/.git-commit-template
 
 [user]
-	name = Sharla Kew
-	email = sharla.kew@futurelearn.com
+	name = Sharlak
+	email = email@.email.email
 
 [init]
 	defaultBranch = main
@@ -37,5 +37,6 @@
       conflictstyle = diff3
 [grep]
 	lineNumber = true
+	patternType = perl
 [push]
 	autoSetupRemote = true
