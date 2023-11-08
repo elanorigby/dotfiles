@@ -12,6 +12,10 @@ if [ -f ~/.dotfiles/bash/prompt ]; then
     source ~/.dotfiles/bash/prompt
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 #pipx autocomplete
 #eval "$(register-python-argcomplete pipx)"
 
@@ -45,6 +49,7 @@ alias vimrc='vim ~/.vimrc'
 alias pluggins='vim ~/.dotfiles/vim/plugin_settings.vim'
 alias bashrc='vim ~/.bashrc'
 alias tmxcnf='vim ~/.tmux.conf'
+alias tf='terraform'
 # copy fzf choice to clipboard
 alias fy='fzf | yank'
 alias prn='poetry run'
@@ -54,6 +59,7 @@ alias current='git rev-parse --abbrev-ref HEAD'
 alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grim='git fetch && git rebase -i origin/main'
 alias grimstr='git fetch && git rebase -i origin/master'
+alias grod='git fetch && git rebase -i origin/production'
 alias gitl='git log --oneline -5'
 alias g='git'
 

@@ -40,9 +40,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 
 " fuzzy search in vim
-" also needs `brew install fzf`
-" Plug '/usr/local/opt/fzf'
+" https://github.com/junegunn/fzf/blob/master/README-VIM.md"
+" also needs `brew install fzf` and 'brew install universal-ctags'
+" https://github.com/universal-ctags/ctags/tree/master
+" 'ctrl-t': 'tab split',
+"'ctrl-x': 'split',
+"'ctrl-v': 'vsplit'
+" Plug '/usr/local/opt/fzf'  " for intel mac
+Plug '/opt/homebrew/opt/fzf' " for apple silicone
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "" EXTRAS
 
@@ -55,7 +62,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " <Enter>: Open highlighted search result in current buffer
 " https://github.com/alok/notational-fzf-vim
 Plug 'alok/notational-fzf-vim'
-let g:nv_search_paths = ['~/projects/notes', '~/.dotfiles/vim/plugin_settings.vim']
+let g:nv_use_short_pathnames = 0 " needed so that nv_search_paths can find everything for some reason
+let g:nv_search_paths = ['~/projects/notes/', '~/.dotfiles/vimrc', '~/.dotfiles/vim/plugin_settings.vim']
 nmap <silent> <c-s> :NV<CR>
 
 " ----- Smooth nav attempt -----
@@ -134,7 +142,7 @@ Plug 'mechatroner/rainbow_csv'
 " Comment out a line based on file type
 " to trigger :AutoInlineComment in both modes, press Ctrl + /
 " to trigger :AutoBlockComment in both modes, press Ctrl + Shift + A
-Plug 'KarimElghamry/vim-auto-comment'
+"Plug 'KarimElghamry/vim-auto-comment'
 
 
 call plug#end()
