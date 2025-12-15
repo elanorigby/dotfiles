@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"         __   _____ __  __ ___  ___                     " 
+"         __   _____ __  __ ___  ___                     "
 "  ------ \ \ / /_ _|  \/  | _ \/ __| ---------          "
 " -------- \ V / | || |\/| |   / (__  --------------     "
-"  -------- \_/ |___|_|  |_|_|_\\___| -----------------  " 
+"  -------- \_/ |___|_|  |_|_|_\\___| -----------------  "
 "                                                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -38,8 +38,12 @@ set smartcase
 " ,r to run spec from in spec file
 nnoremap ,r :!bundle exec rspec %<CR>
 
-" copy path of file
+" copy absolute path of file
 command Cp let @*=expand("%:p")
+" copy relative path of file
+command Cr let @*=expand("%")
+" copy name of file
+command Cn let @*=expand("%:t")
 
 " leader is space
 let mapleader = " "
@@ -74,9 +78,8 @@ function! RemoveFancyCharacters()
 endfunction
 command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-
+"" MULTIPURPOSE TAB KEY
+"" Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col
@@ -97,10 +100,11 @@ inoremap <s-tab> <c-n>
 " Better split navigation
 " https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally#easier-split-navigations
 " ctrl-direction instead of ctrl-w ctrl-direction
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" haven't got this to work
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " Open new splits to right and bottom
 set splitbelow
@@ -108,9 +112,11 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "## PASSIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+scriptencoding utf-8
+set encoding=utf-8
 
 " show trailing whitespace
-set list listchars=tab:\ \ ,trail:Â°
+set list listchars=tab:\ \ ,trail:°
 
 " show indent characters (yaml stuff)
 set list listchars=tab:»-,trail:·,extends:»,precedes:«
@@ -128,6 +134,8 @@ imap hh <ESC>
 nnoremap <leader>q q
 " just q does nothing
 nnoremap q <Nop>
+" I don't need Ex mode
+nnoremap Q <Nop>
 
 " shut up W
 :command W w
@@ -152,6 +160,7 @@ set clipboard=unnamed
 " nnoremap P "0p
 
 " stop u from downcasing shit willy nilly
+" maybe I am strong enough to avoid this now?
 xnoremap U <nop>
 nnoremap gu <nop>
 nnoremap gU <nop>
@@ -159,6 +168,10 @@ nnoremap gU <nop>
 " use shift-tab to insert unexpanded tab (hopefully works)(seems like it does)
 inoremap <S-Tab> <C-V><Tab>
 
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+
+set tags+=/usr/include/**/tags
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "### Remove trailing whitespace before save
@@ -216,24 +229,43 @@ set expandtab       " insert spaces when hitting TABs
 set softtabstop=2   " insert/delete 2 spaces when hitting a TAB/BACKSPACE
 set autoindent      " align the new line indent with the previous line
 set number
-set encoding=utf-8  " does what it says on the tin
 
 " can run :retab to turn tabs into spaces with the above settings
-
-"### COLORS 
-set background=light
+"### COLORS set background=dark
 set t_Co=256
-"set highlight clear SpellBad
-" set highlight SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#ffff00
+
+" diff highlighting (such as in git)
+" cterm - sets the style
+" ctermfg - set the text color
+" ctermbg - set the highlighting
+" DiffAdd - line was added
+" DiffDelete - line was removed
+" DiffChange - part of the line was changed (highlights the whole line)
+" DiffText - the exact part of the line that changed
+" colors https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim?file=Xterm-color-table.png
+highlight DiffAdd    cterm=none ctermfg=36 ctermbg=none gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=132 ctermbg=none gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+highlight clear SpellBad
+highlight SpellBad ctermfg=009 ctermbg=011 guifg=#ff0000 guibg=#ffff00
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# MACROS
+"# Saved MACROS macros
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" must escape a ' with another '
+
+" remove trailing whitespace from line
+let @w='g_ld$'
 
 " made for copying loadfile docs to dbt
 let @d='0ct''description: hh'
 let @n='0f:lyt,O- name: hhp'
 let @b='i---version: 2models:- name: hh"%pa€kb€kb€kb€kbhhocolumns:hh:w'
+
+" for adding ref('') around tables in dbt
+let @r = 'bi{{ ref(^€kb"€kb''hhea'') }}hhjjj'
+
 
 """""""""""""""""" THE END """""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

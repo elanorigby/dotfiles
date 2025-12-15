@@ -42,37 +42,48 @@ alias newnote='cd ~/projects/notes/ && vim new_$now.md'
 alias sqlnotes='cd ~/projects/notes/ && vim sql/sql_notes.md'
 alias gitnotes='cd ~/projects/notes/ && vim git/git_notes.md'
 alias vimnotes='cd ~/projects/notes/ && vim vim/vim_notes.md'
+# --- git aliases
+alias current='git rev-parse --abbrev-ref HEAD'
+alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias grim='git fetch && git rebase -i origin/main'
+alias grimstr='git fetch && git rebase -i origin/master'
+alias grip='git fetch && git rebase -i origin/production'
+alias gitl='git log --oneline -5'
+alias g='git'
+alias gap='git add -p'
+alias gcm='git commit -m'
+alias grp='git restore -p'
+
+# --- dbt aliases
+alias dbtshell='eval $(poetry env activate) && export DBT_PROFILES_DIR=$HOME/.dbt'
 # general
 alias la='ls -a'
 alias ll='ls -al'
 alias vimrc='vim ~/.vimrc'
 alias pluggins='vim ~/.dotfiles/vim/plugin_settings.vim'
+alias swapp='vim ~/.dotfiles/vim/swap/'
 alias bashrc='vim ~/.bashrc'
 alias tmxcnf='vim ~/.tmux.conf'
 alias tf='terraform'
 # copy fzf choice to clipboard
 alias fy='fzf | yank'
 alias prn='poetry run'
+alias ripswap='rm ~/.dotfiles/vim/swap/*'
+alias qmkompile='qmk compile -kb sofle_choc -km impure-dvorak-sofle-01 -e CONVERT_TO=rp2040_ce'
+alias qmkflash='qmk flash -kb sofle_choc -km impure-dvorak-sofle-01 -e CONVERT_TO=rp2040_ce'
+alias tftxt='tf plan -no-color 2> err.txt 1> out.txt'
+alias allowit='direnv allow'
 
-# --- git aliases
-alias current='git rev-parse --abbrev-ref HEAD'
-alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias grim='git fetch && git rebase -i origin/main'
-alias grimstr='git fetch && git rebase -i origin/master'
-alias grod='git fetch && git rebase -i origin/production'
-alias gitl='git log --oneline -5'
-alias g='git'
+#aliases added for claude code
+alias profplan='export AWS_PROFILE=data-prod-sso && terraform plan'
 
-# ----- PATH JAZZ
-# export PATH=$PATH:$(go env GOPATH)/bin
+ #----- PATH JAZZ
 export PATH=$HOME/.dotfiles/bin:$PATH
-# export PATH=$PATH:$HOME/.cargo/env
-# export PATH=$PATH:$HOME/projects/terraform/bin
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
-export PATH=$PATH:/usr/local/bin/vim
 export PATH=$PATH:$HOME/bin
 export PATH="$HOME/.local/bin:$PATH"
-# export GOPATH="$HOME/go"
+export PATH=$PATH:/usr/local/bin/vim
+export PATH=$PATH:$HOME/.dotfiles/.git/commands
+export PATH=$PATH:$HOME/opt/homebrew/bin
 
 # pyenv setup
 # Created by `pipx` on 2021-12-29 16:25:25
@@ -100,7 +111,7 @@ eval "$(pyenv init -)"
 
 # ---- Work around MacOSX high sierra security shit for multithreading
 #https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # NVM setup
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -124,3 +135,16 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 #. "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias dbt_refresh='dbt clean ; dbt deps ; dbt seed'
+
+eval "$(direnv hook bash)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$HOME/.claude/local/node_modules/.bin:$PATH"

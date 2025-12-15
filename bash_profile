@@ -20,3 +20,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/bigmac/.local/bin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+
+# added for SnowCD 
+export PATH=/opt/snowflake/snowcd:$PATH

@@ -50,4 +50,3 @@ the Dotbot readme
 5) run `./install` from within `~/.dotfiles`. This will take care of symlinking your
 dot files to where ever you specified (probably the home folder).
 
-6) git. commit. that shit.

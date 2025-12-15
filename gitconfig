@@ -4,22 +4,33 @@
   change-commits = "!f() { VAR1=$1; VAR='$'$1; OLD=$2; NEW=$3; echo \"Are you sure for replace $VAR $OLD => $NEW ?(Y/N)\";read OK;if [ \"$OK\" = 'Y' ] ; then shift 3; git filter-branch --env-filter \"if [ \\\"${VAR}\\\" = '$OLD' ]; then export $VAR1='$NEW';echo 'to $NEW'; fi\" $@; fi;}; f "
 
   st = status
-  justfixit = "!f() { be rubocop -a $1; git add $1; git status }; f"
   co = checkout
   gone = ! git-gone
   fleece = push --force-with-lease
   canoe = commit --amend --no-edit
   pushnb = !git branch --show-current | xargs git push -u origin
+  changes = log -p -M --follow --stat --
+  uncommit = reset HEAD~1
+  ap = add -p
+  local-branches = "!git branch --verbose --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
+	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+  fom = fetch origin main
+  lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+  showone = show --no-patch --oneline
+  commend = commit --amend
+  rp = restore -p
   cm = commit -m
+  force-pull-main = reset --hard origin/main
 
 [branch]
 	autosetuprebase = always
+	sort = -committerdate
 
 [rebase]
 	autosquash = true
 
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/sharlakew/.gitignore_global
 	editor = vim
 
 [commit]
@@ -34,9 +45,15 @@
 	defaultBranch = main
 
 [merge]
-      conflictstyle = diff3
+  conflictstyle = diff3
+
 [grep]
 	lineNumber = true
 	patternType = perl
+
 [push]
 	autoSetupRemote = true
+[diff]
+	wsErrorHighlight = all
+[apply]
+	whitespace = warn

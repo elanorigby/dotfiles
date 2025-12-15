@@ -1,5 +1,11 @@
 """ PILBO PLUGGINS """
 
+" Reload the file or restart Vim, then you can,
+" :PlugInstall to install the plugins
+" :PlugUpdate to install or update the plugins
+" :PlugDiff to review the changes from the last update
+" :PlugClean to remove plugins no longer in the list
+
 " Vim Plug 
 call plug#begin('~/.vim/pluggins') "
 
@@ -44,12 +50,13 @@ Plug 'tpope/vim-abolish'
 " also needs `brew install fzf` and 'brew install universal-ctags'
 " https://github.com/universal-ctags/ctags/tree/master
 " 'ctrl-t': 'tab split',
-"'ctrl-x': 'split',
-"'ctrl-v': 'vsplit'
+" 'ctrl-x': 'split',
+" 'ctrl-v': 'vsplit'
 " Plug '/usr/local/opt/fzf'  " for intel mac
 Plug '/opt/homebrew/opt/fzf' " for apple silicone
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden -g '!\.git/'"
 
 "" EXTRAS
 
@@ -75,11 +82,12 @@ nmap <silent> <c-s> :NV<CR>
 " good nav for tmux and vim
 " https://github.com/christoomey/vim-tmux-navigator
 Plug 'christoomey/vim-tmux-navigator'
+
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
 let g:tmux_navigator_no_mappings = 1
 noremap <silent> <c-p> :<C-U>TmuxNavigateLeft<cr>
-noremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
+nnoremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
 noremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
 noremap <silent> <c-n> :<C-U>TmuxNavigateRight<cr>
 noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
@@ -90,59 +98,23 @@ Plug 'tmhedberg/matchit'
 " Terraform syntax
 Plug 'hashivim/vim-terraform'
 
-" MARKDOWN
-
-Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'py=python', 'sql=sql']
-
-" Nicer markdown files / writing experience
-" ttps://github.com/reedes/vim-pencil
-set nocompatible
-filetype plugin on       " may already be in your .vimrc
-
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd,md call pencil#init({'wrap': 'soft'})
-augroup END
-
-let g:pencil#conceallevel = 3
-Plug 'reedes/vim-pencil'
-
-"https://github.com/reedes/vim-colors-pencil
-Plug 'reedes/vim-colors-pencil'
-
-"# New plugins, value un-assesed
-"
-"shows the context of the currently visible buffer contents
-"https://github.com/wellle/context.vim
-Plug 'wellle/context.vim'
-
-" DATABASES databases
-" 
-" UI for interacting with dbs
-" https://github.com/kristijanhusak/vim-dadbod-ui
-" open vim and run :DBUI
-" press A from drawer to add a new db connection
-"  example: postgres://pancakes@localhost:5432/pagila
-" press d from drawer to remove selected connection
-" highlight only the query to run vith visual mode (ctrl or shift v) and then
-"  press <leader> S (uppercase) to run only that query
-" <Leader>W - Permanently save query for later use
-Plug 'kristijanhusak/vim-packager' " do I need this
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'kristijanhusak/vim-dadbod-completion'
-
 " colorize csvs
 " https://github.com/mechatroner/rainbow_csv/
 Plug 'mechatroner/rainbow_csv'
 
+"shows the context of the currently visible buffer contents
+"https://github.com/wellle/context.vim
+Plug 'wellle/context.vim'
 
 
-" Comment out a line based on file type
-" to trigger :AutoInlineComment in both modes, press Ctrl + /
-" to trigger :AutoBlockComment in both modes, press Ctrl + Shift + A
-"Plug 'KarimElghamry/vim-auto-comment'
+"############## New plugins, value un-assesed
 
+" Github copilot plugin
+" https://github.com/github/copilot.vim
+" Plug 'github/copilot.vim'
+
+" Vim claude ai plugin
+" https://github.com/pasky/claude.vim
+Plug 'pasky/claude.vim'
 
 call plug#end()

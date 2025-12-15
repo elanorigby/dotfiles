@@ -5,3 +5,4 @@ bash/workrc
 vim/work.vim
 vim/swap
 vim/.netrwhist
+vim/undo

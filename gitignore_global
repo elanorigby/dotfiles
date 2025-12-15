@@ -2,3 +2,9 @@
 *.un~
 *.DS_Store
 tags
+.cursor/
+.claude/
+.vscode/
+CLAUDE.md
+.envrc
+.specstory/
