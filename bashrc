@@ -16,6 +16,10 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+if [ -f ~/.tmux-completion.bash ]; then
+  . ~/.tmux-completion.bash
+fi
+
 #pipx autocomplete
 #eval "$(register-python-argcomplete pipx)"
 
@@ -56,6 +60,7 @@ alias grp='git restore -p'
 
 # --- dbt aliases
 alias dbtshell='eval $(poetry env activate) && export DBT_PROFILES_DIR=$HOME/.dbt'
+
 # general
 alias la='ls -a'
 alias ll='ls -al'

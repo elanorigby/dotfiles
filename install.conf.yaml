@@ -13,6 +13,7 @@
         ~/.vimrc:
         ~/.gitconfig:
         ~/.git-completion.bash:
+        ~/.tmux-completion.bash:
         ~/.gitignore_global:
         ~/.config/nvim: nvim
         ~/.ideavimrc:

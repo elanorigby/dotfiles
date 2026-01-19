@@ -61,8 +61,11 @@ let NERDTreeShowHidden=1
 map <Leader>f :FZF<CR>
 map <Leader>t :Tags<CR>
 
+
+" insert the current date
+command! Date :normal a<C-R>=strftime('%Y-%m-%d')<CR>
 " Insert the current time
-command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+command! Time :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 " Remove smart quotes, etc.
 function! RemoveFancyCharacters()
@@ -109,6 +112,7 @@ inoremap <s-tab> <c-n>
 " Open new splits to right and bottom
 set splitbelow
 set splitright
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "## PASSIVE SKILLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
