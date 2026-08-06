@@ -61,11 +61,13 @@ let NERDTreeShowHidden=1
 map <Leader>f :FZF<CR>
 map <Leader>t :Tags<CR>
 
-
+""" Timelord
 " insert the current date
 command! Date :normal a<C-R>=strftime('%Y-%m-%d')<CR>
 " Insert the current time
 command! Time :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+" Replace epoch time (cursor over timestamp)
+nnoremap <leader>ts "tyiw:exe 'normal! ciw' . strftime("%FT%T %Z", @t)<CR>
 
 " Remove smart quotes, etc.
 function! RemoveFancyCharacters()

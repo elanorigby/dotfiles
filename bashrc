@@ -48,15 +48,16 @@ alias gitnotes='cd ~/projects/notes/ && vim git/git_notes.md'
 alias vimnotes='cd ~/projects/notes/ && vim vim/vim_notes.md'
 # --- git aliases
 alias current='git rev-parse --abbrev-ref HEAD'
+alias g='git'
 alias glog="git log --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grim='git fetch && git rebase -i origin/main'
 alias grimstr='git fetch && git rebase -i origin/master'
 alias grip='git fetch && git rebase -i origin/production'
 alias gitl='git log --oneline -5'
-alias g='git'
 alias gap='git add -p'
-alias gcm='git commit -m'
 alias grp='git restore -p'
+alias gcm='git commit -m'
+alias pro='gh pr view --web'
 
 # --- dbt aliases
 alias dbtshell='eval $(poetry env activate) && export DBT_PROFILES_DIR=$HOME/.dbt'
@@ -68,6 +69,7 @@ alias vimrc='vim ~/.vimrc'
 alias pluggins='vim ~/.dotfiles/vim/plugin_settings.vim'
 alias swapp='vim ~/.dotfiles/vim/swap/'
 alias bashrc='vim ~/.bashrc'
+alias workrc='vim ~/.dotfiles/bash/workrc'
 alias tmxcnf='vim ~/.tmux.conf'
 alias tf='terraform'
 # copy fzf choice to clipboard
@@ -152,4 +154,5 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export PATH="$HOME/.claude/local/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/bin/claude:$PATH"
+

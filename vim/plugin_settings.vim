@@ -58,6 +58,17 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_COMMAND="rg --files --hidden -g '!\.git/'"
 
+" git status bar on side of file
+" https://github.com/mhinz/vim-signify
+" ]c jumps to the next change in the diff.
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+endif
+" default updatetime 4000ms is not good for async update
+set updatetime=100
+
 "" EXTRAS
 
 " ----- Easy notes search ----- 
@@ -116,5 +127,11 @@ Plug 'wellle/context.vim'
 " Vim claude ai plugin
 " https://github.com/pasky/claude.vim
 Plug 'pasky/claude.vim'
+
+" code completion
+" https://github.com/davidhalter/jedi-vim
+Plug 'davidhalter/jedi-vim'
+let g:jedi#use_splits_not_buffers = "left"
+
 
 call plug#end()
