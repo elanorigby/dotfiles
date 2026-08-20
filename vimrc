@@ -29,6 +29,9 @@ set wildignore+=*.swp,*~,._*
 set complete=.,w,b,u,t
 
 " if search all lowercase, ignores case. otherwise, matches case
+" smartcase does nothing on its own -- it only modifies ignorecase, so both
+" are needed for the behaviour described above
+set ignorecase
 set smartcase
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
