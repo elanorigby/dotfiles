@@ -33,11 +33,6 @@ fi
 
 now=$(date +"%m_%d_%Y")
 
-# Better auto complete
-# more like worse lol
-# bind 'set show-all-if-ambiguous on'
-# bind 'TAB:menu-complete'
-
 # ----- ALIASES
 # notes
 alias diary='cd ~/projects/notes/diary && vim $now_diary.md'
@@ -46,6 +41,7 @@ alias newnote='cd ~/projects/notes/ && vim new_$now.md'
 alias sqlnotes='cd ~/projects/notes/ && vim sql/sql_notes.md'
 alias gitnotes='cd ~/projects/notes/ && vim git/git_notes.md'
 alias vimnotes='cd ~/projects/notes/ && vim vim/vim_notes.md'
+
 # --- git aliases
 alias current='git rev-parse --abbrev-ref HEAD'
 alias g='git'
@@ -56,6 +52,7 @@ alias grip='git fetch && git rebase -i origin/production'
 alias gitl='git log --oneline -5'
 alias gap='git add -p'
 alias grp='git restore -p'
+alias grps='git restore -p --staged'
 alias gcm='git commit -m'
 alias pro='gh pr view --web'
 
@@ -80,6 +77,7 @@ alias qmkompile='qmk compile -kb sofle_choc -km impure-dvorak-sofle-01 -e CONVER
 alias qmkflash='qmk flash -kb sofle_choc -km impure-dvorak-sofle-01 -e CONVERT_TO=rp2040_ce'
 alias tftxt='tf plan -no-color 2> err.txt 1> out.txt'
 alias allowit='direnv allow'
+alias cdotfiles='cd ~/.dotfiles'
 
 #aliases added for claude code
 alias profplan='export AWS_PROFILE=data-prod-sso && terraform plan'
@@ -116,43 +114,10 @@ eval "$(pyenv init -)"
 #  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 #fi
 
-# ---- Work around MacOSX high sierra security shit for multithreading
-#https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
-# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# NVM setup
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Yarn setup
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-#_direnv_hook() {
-#  local previous_exit_status=$?;
-#  trap -- '' SIGINT;
-#  eval "$("/usr/local/bin/direnv" export bash)";
-#  trap - SIGINT;
-#  return $previous_exit_status;
-#};
-#if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
-#  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
-#fi
-#. "$HOME/.cargo/env"
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias dbt_refresh='dbt clean ; dbt deps ; dbt seed'
 
 eval "$(direnv hook bash)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="$HOME/.local/bin/claude:$PATH"
 

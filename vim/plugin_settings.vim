@@ -60,7 +60,7 @@ let $FZF_DEFAULT_COMMAND="rg --files --hidden -g '!\.git/'"
 
 " git status bar on side of file
 " https://github.com/mhinz/vim-signify
-" ]c jumps to the next change in the diff.
+" ]c jumps to the next change in the diff, go to change
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
 else
