@@ -161,6 +161,25 @@ let g:db_ui_hide_schemas = ['INFORMATION_SCHEMA']
 " time -- but db_ui#drawer#get() hands back the live instance, so the method
 " is swapped on each drawer as it is created (see the autocmd at the end).
 
+" Show a message *before* a blocking `snow` call and clear it after. Each
+" call spawns a fresh process (~2.5s), and vimscript is single-threaded, so
+" there is no way to animate a spinner while it runs -- the honest thing is to
+" say what is being fetched, then say nothing once it lands.
+"
+" `redraw` is essential: without it Vim batches the echo and paints it only
+" after the call returns, which is precisely when it stops being useful.
+function! s:Working(msg) abort
+  echohl ModeMsg
+  echo 'Snowflake: ' . a:msg . '...'
+  echohl None
+  redraw
+endfunction
+
+function! s:WorkingDone(msg) abort
+  " Overwrite rather than leave the stale "fetching..." on screen.
+  echo empty(a:msg) ? '' : 'Snowflake: ' . a:msg
+endfunction
+
 function! s:FetchColumns(db, schema, table) abort
   let key = 'cols.' . a:db.key_name . '.' . a:schema . '.' . a:table
   let hit = s:CacheGet(key)
@@ -174,6 +193,7 @@ function! s:FetchColumns(db, schema, table) abort
         \ a:schema, a:table)
   let scheme = db_ui#schemas#get('snowflake')
   let cols = []
+  call s:Working('fetching columns for ' . a:schema . '.' . a:table)
   try
     " Same fallback upstream uses: conn once connected, else the raw url.
     let conn = !empty(get(a:db, 'conn', '')) ? a:db.conn : a:db.url
@@ -188,10 +208,12 @@ function! s:FetchColumns(db, schema, table) abort
   catch /.*/
     " Don't cache a failure -- a transient `snow` hiccup would otherwise
     " persist as "(no columns found)" for a whole day.
+    call s:WorkingDone('could not fetch columns for ' . a:schema . '.' . a:table)
     return []
   endtry
 
   call s:CachePut(key, cols)
+  call s:WorkingDone(len(cols) . ' columns in ' . a:schema . '.' . a:table)
   return cols
 endfunction
 
@@ -271,10 +293,13 @@ function! s:PopulateSchemasCached(db) abort dict
     let schemas = cached.schemas
     let tables = cached.tables
   else
+    call s:Working('fetching schemas and tables for ' . a:db.name)
     let schemas = scheme.parse_results(
           \ db_ui#schemas#query(a:db, scheme, scheme.schemes_query), 1)
     let tables = scheme.parse_results(
           \ db_ui#schemas#query(a:db, scheme, scheme.schemes_tables_query), 2)
+    call s:WorkingDone(printf('%s: %d schemas, %d tables',
+          \ a:db.name, len(schemas), len(tables)))
     if a:db.scheme ==? 'snowflake' && !empty(schemas)
       call s:CachePut(key, {'schemas': schemas, 'tables': tables})
     endif
@@ -411,6 +436,7 @@ function! s:DiscoverDbs() abort
   " Neovim's), so each argument is shellescape()d individually.
   let cmd = join(map(['snow', 'sql', '-c', g:snowflake_dadbod_connection,
         \ '--format', 'csv', '-q', query], {_, v -> shellescape(v)}), ' ')
+  call s:Working('discovering databases')
   let out = systemlist(cmd)
   if v:shell_error
     echohl WarningMsg
