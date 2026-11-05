@@ -8,6 +8,8 @@
 "                                claims <Leader>d for jedi#goto()
 "   m  (inside the drawer)       query menu for the table or column under the
 "                                cursor -- NERDTree's `m`, with queries
+"   x  (inside the drawer)       collapse this node, or its parent -- repeat
+"                                to walk back up, as NERDTree's x does
 "   F / X / C / D (in drawer)    refresh all / schemas+tables / columns /
 "                                database list. Also listed under `?`.
 "   :SnowflakeBrowse             open the drawer
@@ -836,6 +838,7 @@ function! s:RenderHelpWithSnowflake() abort dict
     call self.add('', 'noaction', 'help', '', '', 0)
     call self.add('" --- Snowflake ---', 'noaction', 'help', '', '', 0)
     call self.add('" m - Query menu for the table/column under the cursor', 'noaction', 'help', '', '', 0)
+    call self.add('" x - Collapse current node, or its parent (repeat to walk up)', 'noaction', 'help', '', '', 0)
     call self.add('" F - Refresh everything (cache is 24h; use after creating objects)', 'noaction', 'help', '', '', 0)
     call self.add('" X - Refresh schemas and tables', 'noaction', 'help', '', '', 0)
     call self.add('" C - Refresh columns', 'noaction', 'help', '', '', 0)
@@ -1017,3 +1020,64 @@ endfunction
 
 " <bang>0 evaluates to 1 when ! is given, 0 otherwise -- so `!` means live.
 command! -bang SnowflakeSelfTest call s:SelfTest(<bang>0)
+
+" --- 11. `x` to collapse, NERDTree-style ----------------------------------
+" NERDTree binds x to "close the parent of the node under the cursor" and X to
+" "close all children recursively" (nerdtree/plugin/NERD_tree.vim:108-109).
+" Here only lowercase x is used for that: uppercase X already refreshes the
+" schema cache (section 9), and remapping it would be a worse trade than
+" leaving the recursive variant out.
+"
+" Behaviour matches NERDTree's closeCurrentDir: if the cursor is on an
+" expanded node, that node collapses; otherwise its parent collapses and the
+" cursor moves there. That makes repeated x walk back up the tree.
+
+function! s:CollapseCurrent() abort
+  if &filetype !=? 'dbui'
+    return
+  endif
+  let drawer = db_ui#drawer#get()
+  if type(drawer) != v:t_dict || empty(drawer)
+    return
+  endif
+
+  let index = line('.') - 1
+  if index < 0 || index >= len(drawer.content)
+    return
+  endif
+  let item = drawer.content[index]
+
+  " On an expanded node, collapse it in place -- the common case, and what
+  " you want after drilling into a schema and being done with it.
+  if get(item, 'action', '') ==? 'toggle' && get(item, 'expanded', 0)
+    return drawer.toggle_line('')
+  endif
+
+  " Otherwise walk up to the parent and collapse that, leaving the cursor on
+  " it. Columns and query helpers are level+1 leaves, so this is the path that
+  " fires from inside a table.
+  if get(item, 'level', 0) <= 0
+    " Already at a top-level database: collapse it if open, else nothing to do.
+    if get(item, 'action', '') ==? 'toggle' && get(item, 'expanded', 0)
+      return drawer.toggle_line('')
+    endif
+    return
+  endif
+
+  call drawer.goto_node('parent')
+  let pindex = line('.') - 1
+  if pindex < 0 || pindex >= len(drawer.content)
+    return
+  endif
+  let parent = drawer.content[pindex]
+  if get(parent, 'action', '') ==? 'toggle' && get(parent, 'expanded', 0)
+    call drawer.toggle_line('')
+  endif
+endfunction
+
+nnoremap <silent> <Plug>(SnowflakeCollapse) :call <SID>CollapseCurrent()<CR>
+
+augroup snowflake_dbui_collapse
+  autocmd!
+  autocmd FileType dbui silent! nmap <buffer><nowait> x <Plug>(SnowflakeCollapse)
+augroup END
