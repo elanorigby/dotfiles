@@ -117,6 +117,20 @@ Plug 'mechatroner/rainbow_csv'
 "https://github.com/wellle/context.vim
 Plug 'wellle/context.vim'
 
+" ----- Snowflake / SQL database browser -----
+" :SnowflakeBrowse (or space-db) opens a NERDTree-style drawer:
+"   database -> schema -> table -> columns
+" Snowflake support is patched in by ~/.vim/after/plugin/dadbod_snowflake.vim
+" (dadbod-ui ships no Snowflake introspection) and authenticates via the
+" `snow` CLI rather than snowsql, whose MFA path is unreliable.
+" https://github.com/tpope/vim-dadbod
+Plug 'tpope/vim-dadbod'
+" https://github.com/kristijanhusak/vim-dadbod-ui
+Plug 'kristijanhusak/vim-dadbod-ui'
+" SQL completion sourced from the live connection
+" https://github.com/kristijanhusak/vim-dadbod-completion
+Plug 'kristijanhusak/vim-dadbod-completion'
+
 
 "############## New plugins, value un-assesed
 
