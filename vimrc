@@ -179,6 +179,9 @@ autocmd FileType gitcommit setlocal spell
 
 set tags+=/usr/include/**/tags
 
+" wrap a word boundary
+set linebreak
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "### Remove trailing whitespace before save
 " --------------------------------------------------

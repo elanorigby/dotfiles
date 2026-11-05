@@ -3,10 +3,11 @@
 *.DS_Store
 tags
 .cursor/
-.claude/
 .vscode/
 CLAUDE.md
 .envrc
 .specstory/
 .ignore/
 scratchpad/
+CLAUDE.local.md
+.claude/settings.local.json

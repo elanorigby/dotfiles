@@ -20,11 +20,16 @@ if [ -f ~/.tmux-completion.bash ]; then
   . ~/.tmux-completion.bash
 fi
 
+# https://github.com/scop/bash-completion
+if [[ -s $HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh ]]; then
+  . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+fi
+
 #pipx autocomplete
 #eval "$(register-python-argcomplete pipx)"
 
 # Vim mode in the command line
-# set -o vi
+set -o vi
 
 # fzf plugin ignore stuff in gitignore using
 if command -v rg &> /dev/null; then
@@ -68,6 +73,7 @@ alias swapp='vim ~/.dotfiles/vim/swap/'
 alias bashrc='vim ~/.bashrc'
 alias workrc='vim ~/.dotfiles/bash/workrc'
 alias tmxcnf='vim ~/.tmux.conf'
+alias tat='tmux a -t'
 alias tf='terraform'
 # copy fzf choice to clipboard
 alias fy='fzf | yank'
@@ -121,3 +127,6 @@ eval "$(direnv hook bash)"
 
 export PATH="$HOME/.local/bin/claude:$PATH"
 
+
+# added by Snowflake SnowflakeCLI installer v1.0
+export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH

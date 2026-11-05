@@ -25,5 +25,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
 
-# added for SnowCD 
+# added for SnowCD
 export PATH=/opt/snowflake/snowcd:$PATH
+
+# dotnet (installed via Homebrew)
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
+# added by Snowflake SnowflakeCLI installer v1.0
+export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
